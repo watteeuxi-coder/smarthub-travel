@@ -43,8 +43,9 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`
 ╔═══════════════════════════════════════════════════╗
 ║                                                   ║
 ║   🛫 SmartHub Travel API Server                   ║
@@ -62,5 +63,8 @@ app.listen(PORT, () => {
 ║   • GET /health            - Health check         ║
 ║                                                   ║
 ╚═══════════════════════════════════════════════════╝
-  `);
-});
+      `);
+    });
+}
+
+export default app;
