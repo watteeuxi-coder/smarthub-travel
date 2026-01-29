@@ -11,11 +11,12 @@
         "start": "concurrently \"npm run start --prefix server\" \"npm run dev --prefix client\"",
         "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
         "install:all": "npm install",
-        "build": "npm run build --workspace=client",
+        "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 npm run build --workspace=client",
         "server": "npm run dev --prefix server",
         "client": "npm run dev --prefix client"
     },
     "devDependencies": {
-        "concurrently": "^9.1.0"
+        "concurrently": "^9.1.0",
+        "cross-env": "^7.0.3"
     }
 }
