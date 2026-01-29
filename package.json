@@ -3,11 +3,15 @@
     "version": "1.0.0",
     "description": "SmartHub Travel - Workspace for Client and Server",
     "private": true,
+    "workspaces": [
+        "client",
+        "server"
+    ],
     "scripts": {
         "start": "concurrently \"npm run start --prefix server\" \"npm run dev --prefix client\"",
         "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
-        "install:all": "npm install && npm install --prefix server && npm install --prefix client",
-        "build": "npm run build --prefix client",
+        "install:all": "npm install",
+        "build": "npm run build --workspace=client",
         "server": "npm run dev --prefix server",
         "client": "npm run dev --prefix client"
     },
