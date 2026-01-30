@@ -1,0 +1,57 @@
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Search, Plane, TrendingDown, Shield, MapPin, Star, ArrowRight, Sparkles, Calendar, Users, ChevronDown, Briefcase, Clock, X } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import { useSearchHistory } from '../hooks/useSearchHistory'
+import AirportAutocomplete from '../components/AirportAutocomplete'
+import SEOHead from '../components/SEOHead'
+import flightData from '../data/data.json'
+
+export default function HomePage() {
+    const [from, setFrom] = useState('')
+    const [to, setTo] = useState('')
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+    const [returnDate, setReturnDate] = useState('')
+    const [tripType, setTripType] = useState('oneway')
+    const [adults, setAdults] = useState(1)
+    const [children, setChildren] = useState(0)
+    const [cabinClass, setCabinClass] = useState('economy')
+    const [showTravelers, setShowTravelers] = useState(false)
+    const [showClass, setShowClass] = useState(false)
+    const [airports, setAirports] = useState([])
+    const [loadingAirports, setLoadingAirports] = useState(true)
+
+    const travelerRef = useRef(null)
+    const classRef = useRef(null)
+    const navigate = useNavigate()
+    const { t } = useLanguage()
+    const { history, addSearch } = useSearchHistory()
+
+    useEffect(() => {
+        loadAirports()
+    }, [])
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (travelerRef.current && !travelerRef.current.contains(event.target)) {
+                setShowTravelers(false)
+            }
+            if (classRef.current && !classRef.current.contains(event.target)) {
+                setShowClass(false)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
+    const loadAirports = () => {
+        try {
+            setAirports(flightData.airports)
+        } catch (err) {
+            console.error('Failed to load airports:', err)
+        } finally {
+            setLoadingAirports(false)
+        }
+    }
