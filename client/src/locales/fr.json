@@ -165,6 +165,10 @@
         "hours": "heures",
         "mins": "mins"
     },
+    "seo": {
+        "defaultTitle": "SmartHub Travel - Trouvez des vols moins chers via les hubs internationaux",
+        "defaultDescription": "Économisez jusqu'à 40% sur les vols internationaux en découvrant des itinéraires optimaux via les grands hubs aériens. Comparez les prix et trouvez les meilleures connexions."
+    },
     "map": {
         "origin": "Origine",
         "destination": "Destination",

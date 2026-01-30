@@ -165,6 +165,10 @@
         "hours": "hours",
         "mins": "mins"
     },
+    "seo": {
+        "defaultTitle": "SmartHub Travel - Find Cheaper Flights Through International Hubs",
+        "defaultDescription": "Save up to 40% on international flights by discovering optimal routes through major airline hubs. Compare prices and find the best connections."
+    },
     "map": {
         "origin": "Origin",
         "destination": "Destination",
