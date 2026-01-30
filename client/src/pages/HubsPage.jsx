@@ -29,16 +29,20 @@ export default function HubsPage() {
 
             // Calculate savings and routes for each hub
             const rankedHubs = hubAirports.map(hub => {
-                const hubRoutes = flightData.routes.filter(route => route.hub === hub.id)
+                const hubRoutes = flightData.routes.filter(route => route.via === hub.id)
                 const avgSavings = hubRoutes.length > 0
                     ? hubRoutes.reduce((sum, r) => sum + r.savings, 0) / hubRoutes.length
                     : 0
+
+                // Get rating from hubDetails
+                const hubDetail = flightData.hubDetails[hub.id]
+                const rating = hubDetail ? hubDetail.rating : 4.5
 
                 return {
                     ...hub,
                     avgSavings: Math.round(avgSavings),
                     routeCount: hubRoutes.length,
-                    rating: hub.rating || 4.5
+                    rating: rating
                 }
             }).sort((a, b) => b.avgSavings - a.avgSavings)
 
