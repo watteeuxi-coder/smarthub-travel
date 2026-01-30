@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Start server
+// Start server (only in local development)
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log(`
@@ -66,5 +66,8 @@ if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
       `);
     });
 }
+
+// Export the Express app for Vercel serverless functions
+export default app;
 
 export default app;
