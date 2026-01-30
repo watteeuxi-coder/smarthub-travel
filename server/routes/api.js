@@ -1,19 +1,13 @@
 import express from 'express';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import recommendationService from '../services/recommendationService.js';
 import priceComparisonService from '../services/priceComparisonService.js';
 import kiwiService from '../services/kiwiService.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const require = createRequire(import.meta.url);
 const router = express.Router();
 
 // Load data
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 const data = require('../data.json');
 
 /**
