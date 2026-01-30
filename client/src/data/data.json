@@ -1,0 +1,690 @@
+{
+    "airports": [
+        {
+            "id": "CDG",
+            "name": "Paris CDG",
+            "city": "Paris",
+            "country": "France",
+            "isHub": false,
+            "coords": [
+                2.54,
+                49.00
+            ]
+        },
+        {
+            "id": "DXB",
+            "name": "Dubai International",
+            "city": "Dubai",
+            "country": "UAE",
+            "isHub": true,
+            "coords": [
+                55.36,
+                25.25
+            ]
+        },
+        {
+            "id": "SIN",
+            "name": "Singapore Changi",
+            "city": "Singapore",
+            "country": "Singapore",
+            "isHub": true,
+            "coords": [
+                103.99,
+                1.36
+            ]
+        },
+        {
+            "id": "BKK",
+            "name": "Suvarnabhumi",
+            "city": "Bangkok",
+            "country": "Thailand",
+            "isHub": false,
+            "coords": [
+                100.75,
+                13.68
+            ]
+        },
+        {
+            "id": "JFK",
+            "name": "John F. Kennedy",
+            "city": "New York",
+            "country": "USA",
+            "isHub": true,
+            "coords": [
+                -73.78,
+                40.64
+            ]
+        },
+        {
+            "id": "LHR",
+            "name": "London Heathrow",
+            "city": "London",
+            "country": "UK",
+            "isHub": true,
+            "coords": [
+                -0.46,
+                51.47
+            ]
+        },
+        {
+            "id": "FRA",
+            "name": "Frankfurt Airport",
+            "city": "Frankfurt",
+            "country": "Germany",
+            "isHub": true,
+            "coords": [
+                8.57,
+                50.03
+            ]
+        },
+        {
+            "id": "IST",
+            "name": "Istanbul Airport",
+            "city": "Istanbul",
+            "country": "Turkey",
+            "isHub": true,
+            "coords": [
+                28.81,
+                41.26
+            ]
+        },
+        {
+            "id": "DOH",
+            "name": "Hamad International",
+            "city": "Doha",
+            "country": "Qatar",
+            "isHub": true,
+            "coords": [
+                51.61,
+                25.27
+            ]
+        },
+        {
+            "id": "HND",
+            "name": "Tokyo Haneda",
+            "city": "Tokyo",
+            "country": "Japan",
+            "isHub": true,
+            "coords": [
+                139.78,
+                35.55
+            ]
+        },
+        {
+            "id": "SYD",
+            "name": "Sydney Airport",
+            "city": "Sydney",
+            "country": "Australia",
+            "isHub": false,
+            "coords": [
+                151.18,
+                -33.95
+            ]
+        },
+        {
+            "id": "LAX",
+            "name": "Los Angeles International",
+            "city": "Los Angeles",
+            "country": "USA",
+            "isHub": true,
+            "coords": [
+                -118.41,
+                33.94
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "from": "CDG",
+            "to": "BKK",
+            "type": "direct",
+            "price": 950,
+            "duration": 660
+        },
+        {
+            "from": "CDG",
+            "to": "BKK",
+            "via": "DXB",
+            "type": "hub",
+            "price": 620,
+            "savings": 330,
+            "savingsPercent": 35,
+            "hubRating": 4.8,
+            "duration": 780
+        },
+        {
+            "from": "CDG",
+            "to": "BKK",
+            "via": "IST",
+            "type": "hub",
+            "price": 680,
+            "savings": 270,
+            "savingsPercent": 28,
+            "hubRating": 4.5,
+            "duration": 810
+        },
+        {
+            "from": "CDG",
+            "to": "BKK",
+            "via": "DOH",
+            "type": "hub",
+            "price": 590,
+            "savings": 360,
+            "savingsPercent": 38,
+            "hubRating": 4.9,
+            "duration": 800
+        },
+        {
+            "from": "CDG",
+            "to": "SYD",
+            "type": "direct",
+            "price": 1450,
+            "duration": 1320
+        },
+        {
+            "from": "CDG",
+            "to": "SYD",
+            "via": "SIN",
+            "type": "hub",
+            "price": 980,
+            "savings": 470,
+            "savingsPercent": 32,
+            "hubRating": 4.9,
+            "duration": 1440
+        },
+        {
+            "from": "CDG",
+            "to": "SYD",
+            "via": "DXB",
+            "type": "hub",
+            "price": 1050,
+            "savings": 400,
+            "savingsPercent": 28,
+            "hubRating": 4.8,
+            "duration": 1500
+        },
+        {
+            "from": "JFK",
+            "to": "BKK",
+            "type": "direct",
+            "price": 1200,
+            "duration": 1020
+        },
+        {
+            "from": "JFK",
+            "to": "BKK",
+            "via": "DXB",
+            "type": "hub",
+            "price": 780,
+            "savings": 420,
+            "savingsPercent": 35,
+            "hubRating": 4.8,
+            "duration": 1140
+        },
+        {
+            "from": "JFK",
+            "to": "BKK",
+            "via": "HND",
+            "type": "hub",
+            "price": 850,
+            "savings": 350,
+            "savingsPercent": 29,
+            "hubRating": 4.7,
+            "duration": 1200
+        },
+        {
+            "from": "LHR",
+            "to": "SYD",
+            "type": "direct",
+            "price": 1380,
+            "duration": 1260
+        },
+        {
+            "from": "LHR",
+            "to": "SYD",
+            "via": "SIN",
+            "type": "hub",
+            "price": 920,
+            "savings": 460,
+            "savingsPercent": 33,
+            "hubRating": 4.9,
+            "duration": 1380
+        },
+        {
+            "from": "LHR",
+            "to": "SYD",
+            "via": "DXB",
+            "type": "hub",
+            "price": 980,
+            "savings": 400,
+            "savingsPercent": 29,
+            "hubRating": 4.8,
+            "duration": 1440
+        },
+        {
+            "from": "FRA",
+            "to": "HND",
+            "type": "direct",
+            "price": 1100,
+            "duration": 720
+        },
+        {
+            "from": "FRA",
+            "to": "HND",
+            "via": "IST",
+            "type": "hub",
+            "price": 750,
+            "savings": 350,
+            "savingsPercent": 32,
+            "hubRating": 4.5,
+            "duration": 900
+        },
+        {
+            "from": "LAX",
+            "to": "SYD",
+            "type": "direct",
+            "price": 1250,
+            "duration": 900
+        },
+        {
+            "from": "LAX",
+            "to": "SYD",
+            "via": "SIN",
+            "type": "hub",
+            "price": 890,
+            "savings": 360,
+            "savingsPercent": 29,
+            "hubRating": 4.9,
+            "duration": 1080
+        },
+        {
+            "from": "JFK",
+            "to": "CDG",
+            "type": "direct",
+            "price": 850,
+            "duration": 420
+        },
+        {
+            "from": "JFK",
+            "to": "CDG",
+            "via": "LHR",
+            "type": "hub",
+            "price": 680,
+            "savings": 170,
+            "savingsPercent": 20,
+            "hubRating": 4.3,
+            "duration": 540
+        },
+        {
+            "from": "BKK",
+            "to": "CDG",
+            "type": "direct",
+            "price": 980,
+            "duration": 720
+        },
+        {
+            "from": "BKK",
+            "to": "CDG",
+            "via": "FRA",
+            "type": "hub",
+            "price": 760,
+            "savings": 220,
+            "savingsPercent": 22,
+            "hubRating": 4.4,
+            "duration": 840
+        },
+        {
+            "from": "CDG",
+            "to": "LAX",
+            "type": "direct",
+            "price": 1100,
+            "duration": 690
+        },
+        {
+            "from": "CDG",
+            "to": "LAX",
+            "via": "JFK",
+            "type": "hub",
+            "price": 880,
+            "savings": 220,
+            "savingsPercent": 20,
+            "hubRating": 4.2,
+            "duration": 810
+        },
+        {
+            "from": "CDG",
+            "to": "HND",
+            "type": "direct",
+            "price": 1050,
+            "duration": 780
+        },
+        {
+            "from": "CDG",
+            "to": "HND",
+            "via": "LAX",
+            "type": "hub",
+            "price": 860,
+            "savings": 190,
+            "savingsPercent": 18,
+            "hubRating": 4.1,
+            "duration": 960
+        }
+    ],
+    "hubDetails": {
+        "DXB": {
+            "id": "DXB",
+            "name": "Dubai International",
+            "city": "Dubai",
+            "country": "UAE",
+            "rating": 4.8,
+            "avgSavings": 28,
+            "avgLayover": "3-5h",
+            "totalFlights": "1,200+",
+            "shortSummary": "Strategic crossroads between East and West with unbeatable savings and luxury transit.",
+            "description": "One of the world's busiest airports, Dubai International offers excellent connections to Asia, Europe, and Africa with world-class facilities.",
+            "features": [
+                "Free WiFi",
+                "Luxury Lounges",
+                "Duty Free Shopping",
+                "Spa Services"
+            ],
+            "popularRoutes": [
+                "Europe to Asia",
+                "Europe to Australia",
+                "Americas to Middle East"
+            ],
+            "reviews": [
+                {
+                    "name": "Alex R.",
+                    "rating": 5,
+                    "comment": "Dubai is the best hub for my trips to Asia. The terminal is literally a shopping mall."
+                },
+                {
+                    "name": "Sarah M.",
+                    "rating": 4,
+                    "comment": "Efficient connections, though the airport is massive. Saved $400 on my last flight!"
+                }
+            ]
+        },
+        "SIN": {
+            "id": "SIN",
+            "name": "Singapore Changi",
+            "city": "Singapore",
+            "country": "Singapore",
+            "rating": 4.9,
+            "avgSavings": 32,
+            "avgLayover": "2-4h",
+            "totalFlights": "950+",
+            "shortSummary": "The world's best transit experience. You'll actually want a longer layover here.",
+            "description": "Award-winning airport known for its stunning architecture, gardens, and exceptional transit experience.",
+            "features": [
+                "Butterfly Garden",
+                "Swimming Pool",
+                "Movie Theater",
+                "Free City Tours"
+            ],
+            "popularRoutes": [
+                "Europe to Australia",
+                "Middle East to Asia Pacific",
+                "Americas to Southeast Asia"
+            ],
+            "reviews": [
+                {
+                    "name": "Mark T.",
+                    "rating": 5,
+                    "comment": "Changi is not an airport, it's a destination. The Jewel is incredible."
+                },
+                {
+                    "name": "Elena K.",
+                    "rating": 5,
+                    "comment": "Smooth transit, great food, and the free city tour is a plus if you have time."
+                }
+            ]
+        },
+        "IST": {
+            "id": "IST",
+            "name": "Istanbul Airport",
+            "city": "Istanbul",
+            "country": "Turkey",
+            "rating": 4.5,
+            "avgSavings": 25,
+            "avgLayover": "4-6h",
+            "totalFlights": "800+",
+            "shortSummary": "Strategic gateway with incredible Turkish hospitality and massive global reach.",
+            "description": "Strategic gateway between Europe and Asia with competitive pricing on Turkish Airlines connections.",
+            "features": [
+                "Modern Architecture",
+                "Extensive Lounges",
+                "Cultural Exhibits",
+                "Diverse Dining"
+            ],
+            "popularRoutes": [
+                "Americas to Asia",
+                "Europe to Middle East",
+                "Africa to Europe"
+            ],
+            "reviews": [
+                {
+                    "name": "Jean P.",
+                    "rating": 4,
+                    "comment": "The new airport is giant but very modern. The lounge is one of the best in the world."
+                },
+                {
+                    "name": "Fatima S.",
+                    "rating": 5,
+                    "comment": "Perfect hub for flying to Africa or the Middle East. Very competitive prices."
+                }
+            ]
+        },
+        "DOH": {
+            "id": "DOH",
+            "name": "Hamad International",
+            "city": "Doha",
+            "country": "Qatar",
+            "rating": 4.9,
+            "avgSavings": 30,
+            "avgLayover": "3-4h",
+            "totalFlights": "700+",
+            "shortSummary": "Ultra-modern luxury hub offering some of the fastest connections to the Indian subcontinent.",
+            "description": "Ultra-modern hub with Qatar Airways offering premium connections worldwide.",
+            "features": [
+                "Art Gallery",
+                "Quiet Rooms",
+                "Premium Lounges",
+                "Indoor Garden"
+            ],
+            "popularRoutes": [
+                "Europe to Asia",
+                "Europe to Australia",
+                "Americas to Indian Subcontinent"
+            ],
+            "reviews": [
+                {
+                    "name": "Liam W.",
+                    "rating": 5,
+                    "comment": "Qatar Airways is 5-star for a reason, and so is this airport. Super quiet and clean."
+                },
+                {
+                    "name": "Chloe B.",
+                    "rating": 5,
+                    "comment": "Boutique feel despite its size. The art installations are a nice touch."
+                }
+            ]
+        },
+        "LHR": {
+            "id": "LHR",
+            "name": "London Heathrow",
+            "city": "London",
+            "country": "UK",
+            "rating": 4.3,
+            "avgSavings": 18,
+            "avgLayover": "3-5h",
+            "totalFlights": "1,300+",
+            "shortSummary": "Essential transatlantic gateway with one of the world's most extensive route networks.",
+            "description": "Europe's busiest airport with extensive global connections.",
+            "features": [
+                "Terminal 5 Shopping",
+                "Premium Lounges",
+                "Fast Connections",
+                "City Access"
+            ],
+            "popularRoutes": [
+                "Americas to Europe",
+                "Americas to Africa",
+                "Americas to Middle East"
+            ],
+            "reviews": [
+                {
+                    "name": "James O.",
+                    "rating": 4,
+                    "comment": "Classic hub. Connections between terminals can be long but always reliable."
+                },
+                {
+                    "name": "Emma L.",
+                    "rating": 4,
+                    "comment": "Great shopping if you're in Terminal 5. Lots of daily flights to everywhere."
+                }
+            ]
+        },
+        "FRA": {
+            "id": "FRA",
+            "name": "Frankfurt Airport",
+            "city": "Frankfurt",
+            "country": "Germany",
+            "rating": 4.4,
+            "avgSavings": 20,
+            "avgLayover": "2-3h",
+            "totalFlights": "1,100+",
+            "shortSummary": "Efficient German precision hub, perfect for quick connections across Europe.",
+            "description": "Major European hub with efficient connections via Lufthansa.",
+            "features": [
+                "Efficient Transfers",
+                "Lounges",
+                "Good Dining",
+                "Rail Connection"
+            ],
+            "popularRoutes": [
+                "Americas to Central Europe",
+                "Americas to Eastern Europe",
+                "Asia to Europe"
+            ],
+            "reviews": [
+                {
+                    "name": "Klaus H.",
+                    "rating": 5,
+                    "comment": "Efficiency at its best. Most of my layovers are under 1 hour and I never miss a flight."
+                },
+                {
+                    "name": "Maria G.",
+                    "rating": 4,
+                    "comment": "The train connection to the city is so easy. Perfect for a quick lunch in Frankfurt."
+                }
+            ]
+        },
+        "JFK": {
+            "id": "JFK",
+            "name": "John F. Kennedy",
+            "city": "New York",
+            "country": "USA",
+            "rating": 4.2,
+            "avgSavings": 15,
+            "avgLayover": "4-6h",
+            "totalFlights": "1,400+",
+            "shortSummary": "The primary gateway to the Americas, offering endless domestic and regional connections.",
+            "description": "Major transatlantic hub with connections to all US destinations.",
+            "features": [
+                "Multiple Terminals",
+                "Diverse Airlines",
+                "City Access",
+                "Lounges"
+            ],
+            "popularRoutes": [
+                "Europe to Americas",
+                "Caribbean to Europe",
+                "South America to Europe"
+            ],
+            "reviews": [
+                {
+                    "name": "Robert D.",
+                    "rating": 4,
+                    "comment": "Iconic airport. Can be busy, but it's the gateway to the world."
+                },
+                {
+                    "name": "Sofia V.",
+                    "rating": 4,
+                    "comment": "Great variety of food in Terminal 4. Immigration can take time, plan accordingly."
+                }
+            ]
+        },
+        "HND": {
+            "id": "HND",
+            "name": "Tokyo Haneda",
+            "city": "Tokyo",
+            "country": "Japan",
+            "rating": 4.7,
+            "avgSavings": 22,
+            "avgLayover": "2-4h",
+            "totalFlights": "850+",
+            "shortSummary": "Clean, efficient, and located right in the heart of Tokyo for a perfect layover.",
+            "description": "Convenient Tokyo airport with excellent Asia-Pacific connections.",
+            "features": [
+                "City Proximity",
+                "Clean Facilities",
+                "Good Food",
+                "Efficient Service"
+            ],
+            "popularRoutes": [
+                "Americas to Asia",
+                "Europe to Japan",
+                "Oceania to Asia"
+            ],
+            "reviews": [
+                {
+                    "name": "Yuki S.",
+                    "rating": 5,
+                    "comment": "So much better than Narita. You're in Tokyo in 15 minutes."
+                },
+                {
+                    "name": "David K.",
+                    "rating": 5,
+                    "comment": "Everything works perfectly. Cleanest airport I've ever visited."
+                }
+            ]
+        },
+        "LAX": {
+            "id": "LAX",
+            "name": "Los Angeles International",
+            "city": "Los Angeles",
+            "country": "USA",
+            "rating": 4.1,
+            "avgSavings": 16,
+            "avgLayover": "4-6h",
+            "totalFlights": "900+",
+            "shortSummary": "Dynamic Pacific gateway connecting you effortlessly to Oceania and the West Coast.",
+            "description": "Pacific gateway with strong connections to Asia and Oceania.",
+            "features": [
+                "New Terminals",
+                "Diverse Airlines",
+                "Pacific Connections",
+                "Star Alliance Hub"
+            ],
+            "popularRoutes": [
+                "Asia to Americas",
+                "Oceania to Americas",
+                "Americas to Pacific Islands"
+            ],
+            "reviews": [
+                {
+                    "name": "Chris P.",
+                    "rating": 4,
+                    "comment": "The new Bradley terminal is stunning. Great place to wait for a long flight."
+                },
+                {
+                    "name": "Lindsey H.",
+                    "rating": 4,
+                    "comment": "Endless flight options to Australia. The sunset views from the lounge are 10/10."
+                }
+            ]
+        }
+    }
+}

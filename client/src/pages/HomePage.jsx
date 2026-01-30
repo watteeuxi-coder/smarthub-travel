@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { useSearchHistory } from '../hooks/useSearchHistory'
 import AirportAutocomplete from '../components/AirportAutocomplete'
 import SEOHead from '../components/SEOHead'
+import flightData from '../data/data.json'
 
 export default function HomePage() {
     const [from, setFrom] = useState('')

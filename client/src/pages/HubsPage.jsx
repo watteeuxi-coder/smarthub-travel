@@ -6,6 +6,7 @@ import { useFavorites } from '../hooks/useFavorites'
 import StarRating from '../components/StarRating'
 import SEOHead from '../components/SEOHead'
 import { useToast } from '../components/Toast'
+import flightData from '../data/data.json'
 
 import { getHubImage } from '../constants/hubImages'
 
@@ -18,18 +19,32 @@ export default function HubsPage() {
     const { addToast } = useToast()
 
     useEffect(() => {
-        fetchHubs()
+        loadHubs()
     }, [])
 
-    const fetchHubs = async () => {
+    const loadHubs = () => {
         try {
-            const response = await fetch('/api/hubs/ranked')
-            const data = await response.json()
-            if (data.success) {
-                setHubs(data.data)
-            }
+            // Get unique hub airports from static data
+            const hubAirports = flightData.airports.filter(airport => airport.isHub)
+
+            // Calculate savings and routes for each hub
+            const rankedHubs = hubAirports.map(hub => {
+                const hubRoutes = flightData.routes.filter(route => route.hub === hub.id)
+                const avgSavings = hubRoutes.length > 0
+                    ? hubRoutes.reduce((sum, r) => sum + r.savings, 0) / hubRoutes.length
+                    : 0
+
+                return {
+                    ...hub,
+                    avgSavings: Math.round(avgSavings),
+                    routeCount: hubRoutes.length,
+                    rating: hub.rating || 4.5
+                }
+            }).sort((a, b) => b.avgSavings - a.avgSavings)
+
+            setHubs(rankedHubs)
         } catch (err) {
-            console.error('Failed to fetch hubs:', err)
+            console.error('Failed to load hubs:', err)
         } finally {
             setLoading(false)
         }
