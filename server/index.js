@@ -69,5 +69,3 @@ if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
 
 // Export the Express app for Vercel serverless functions
 export default app;
-
-export default app;
