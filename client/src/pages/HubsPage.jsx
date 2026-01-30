@@ -77,7 +77,7 @@ export default function HubsPage() {
                         <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
                             {t('hubs.title')}
                         </h1>
-                        <p className="text-xl text-dark-400 max-w-2xl mx-auto mb-6">
+                        <p className="text-lg sm:text-xl text-dark-400 max-w-2xl mx-auto mb-6 px-4">
                             {t('hubs.subtitle')}
                         </p>
 
@@ -119,8 +119,8 @@ export default function HubsPage() {
                                     title={isFavorite(hub.id) ? 'Remove from favorites' : 'Add to favorites'}
                                 >
                                     <Heart className={`w-5 h-5 transition-all ${isFavorite(hub.id)
-                                            ? 'fill-accent-400 text-accent-400'
-                                            : 'text-dark-400 group-hover/fav:text-accent-400'
+                                        ? 'fill-accent-400 text-accent-400'
+                                        : 'text-dark-400 group-hover/fav:text-accent-400'
                                         }`} />
                                 </button>
 

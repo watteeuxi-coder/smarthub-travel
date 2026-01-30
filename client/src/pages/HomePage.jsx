@@ -178,7 +178,7 @@ export default function HomePage() {
                                                 />
                                             </div>
 
-                                            <div className={`flex-1 grid gap-3 ${tripType === 'roundtrip' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                                            <div className={`flex-1 grid gap-3 ${tripType === 'roundtrip' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                                                 <label className="relative group cursor-pointer">
                                                     <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-400 group-focus-within:text-primary-400 transition-colors pointer-events-none z-10" />
                                                     <input
@@ -209,7 +209,7 @@ export default function HomePage() {
                                         </div>
 
                                         {/* Options Row */}
-                                        <div className="flex flex-col md:flex-row gap-3 pt-2 border-t border-dark-700/50">
+                                        <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-dark-700/50">
                                             <div className="flex-1 flex gap-3">
                                                 {/* Travelers Selector */}
                                                 <div className="flex-1 relative" ref={travelerRef}>

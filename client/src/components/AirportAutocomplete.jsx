@@ -109,7 +109,7 @@ export default function AirportAutocomplete({
             </label>
 
             {isOpen && filteredAirports.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-dark-800 border border-dark-700 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-80 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-dark-800 border border-dark-700 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-60 sm:max-h-80 overflow-y-auto">
                     {filteredAirports.map((airport, index) => (
                         <button
                             key={airport.id}
@@ -118,11 +118,11 @@ export default function AirportAutocomplete({
                             className={`w-full text-left px-4 py-3 hover:bg-dark-700 transition-colors border-b border-dark-700/50 last:border-0 ${index === selectedIndex ? 'bg-dark-700' : ''
                                 }`}
                         >
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-start sm:items-center justify-between gap-2">
                                 <div>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-mono font-bold text-primary-400">{airport.id}</span>
-                                        <span className="text-white font-medium">{airport.name}</span>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="font-mono font-bold text-primary-400 text-sm sm:text-base">{airport.id}</span>
+                                        <span className="text-white font-medium text-sm sm:text-base">{airport.name}</span>
                                     </div>
                                     <div className="text-sm text-dark-400 mt-1">
                                         {airport.city}, {airport.country}

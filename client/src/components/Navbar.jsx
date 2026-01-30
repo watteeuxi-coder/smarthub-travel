@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Plane } from 'lucide-react'
+import { Plane, Menu, X } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
+import { useState } from 'react'
 
 export default function Navbar() {
     const location = useLocation()
     const { t } = useLanguage()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const isActive = (path) => location.pathname === path
 
@@ -45,10 +47,53 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Language Switcher */}
-                    <LanguageSwitcher />
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="md:hidden p-2 text-white hover:bg-dark-800 rounded-lg transition-colors"
+                    >
+                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+
+                    {/* Desktop Language Switcher */}
+                    <div className="hidden md:block">
+                        <LanguageSwitcher />
+                    </div>
                 </div>
+
+                {/* Mobile Menu */}
+                {isMenuOpen && (
+                    <div className="md:hidden py-4 border-t border-dark-700/50">
+                        <div className="flex flex-col space-y-3">
+                            <Link
+                                to="/"
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`px-4 py-2 rounded-lg transition-colors ${isActive('/') ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-dark-300 hover:text-white hover:bg-dark-800'}`}
+                            >
+                                {t('nav.home')}
+                            </Link>
+                            <Link
+                                to="/hubs"
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`px-4 py-2 rounded-lg transition-colors ${isActive('/hubs') ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-dark-300 hover:text-white hover:bg-dark-800'}`}
+                            >
+                                {t('nav.hubs')}
+                            </Link>
+                            <Link
+                                to="/about"
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`px-4 py-2 rounded-lg transition-colors ${isActive('/about') ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-dark-300 hover:text-white hover:bg-dark-800'}`}
+                            >
+                                {t('nav.about')}
+                            </Link>
+                            <div className="px-4 pt-2">
+                                <LanguageSwitcher />
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-        </nav>
+        </div>
+        </nav >
     )
 }

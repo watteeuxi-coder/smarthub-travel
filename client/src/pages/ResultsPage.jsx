@@ -129,20 +129,20 @@ export default function ResultsPage() {
         <div className="min-h-screen py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="mb-8">
-                    <div className="flex items-center gap-3 text-dark-400 mb-2">
-                        <span className="text-white font-semibold">{results.origin?.city}</span>
-                        <ArrowRight className="w-4 h-4" />
-                        <span className="text-white font-semibold">{results.destination?.city}</span>
+                <div className="mb-6 sm:mb-8">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-dark-400 mb-2">
+                        <span className="text-white font-semibold text-sm sm:text-base">{results.origin?.city}</span>
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <span className="text-white font-semibold text-sm sm:text-base">{results.destination?.city}</span>
                     </div>
-                    <h1 className="font-display text-3xl md:text-4xl font-bold text-white">
+                    <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                         {t('results.title')}
                     </h1>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     {/* Sidebar */}
-                    <div className="lg:col-span-1 space-y-6">
+                    <div className="lg:col-span-1 space-y-4 sm:space-y-6">
                         {/* Filters */}
                         <div className="card p-6">
                             <div
