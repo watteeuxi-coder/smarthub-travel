@@ -6,8 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load data
-const dataPath = path.join(__dirname, '..', 'data.json');
-const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const data = require('../data.json');
 
 /**
  * Price Comparison Service
