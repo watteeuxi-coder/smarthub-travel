@@ -1,13 +1,16 @@
 {
-    "version": 2,
+    "buildCommand": "npm run build",
+    "outputDirectory": "public",
+    "functions": {
+        "server/index.js": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
+    },
     "rewrites": [
         {
             "source": "/api/(.*)",
             "destination": "/server/index.js"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/$1"
         }
     ]
 }
