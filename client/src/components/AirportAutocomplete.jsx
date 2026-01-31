@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { Search, MapPin, X } from 'lucide-react'
+import { Search, MapPin, X, Loader2 } from 'lucide-react'
+import { searchLocations } from '../services/api'
 
 export default function AirportAutocomplete({
     value,
@@ -12,22 +13,55 @@ export default function AirportAutocomplete({
     const [isOpen, setIsOpen] = useState(false)
     const [filteredAirports, setFilteredAirports] = useState([])
     const [selectedIndex, setSelectedIndex] = useState(-1)
+    const [isLoading, setIsLoading] = useState(false)
     const wrapperRef = useRef(null)
+    const debounceTimerRef = useRef(null)
 
+    // Debounced search effect
     useEffect(() => {
-        if (searchTerm) {
-            const term = searchTerm.toLowerCase()
-            const filtered = airports.filter(airport =>
-                airport.id.toLowerCase().includes(term) ||
-                airport.name.toLowerCase().includes(term) ||
-                airport.city.toLowerCase().includes(term) ||
-                airport.country.toLowerCase().includes(term)
-            ).slice(0, 8)
-            setFilteredAirports(filtered)
-            setIsOpen(filtered.length > 0)
+        // Clear previous timer
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current)
+        }
+
+        if (searchTerm && searchTerm.trim().length >= 2) {
+            setIsLoading(true)
+
+            // Set new timer for debounce
+            debounceTimerRef.current = setTimeout(async () => {
+                try {
+                    const response = await searchLocations(searchTerm)
+                    if (response.success) {
+                        setFilteredAirports(response.data)
+                        setIsOpen(response.data.length > 0)
+                    }
+                } catch (error) {
+                    console.error('Airport search failed:', error)
+                    // Fallback to local search if API fails
+                    const term = searchTerm.toLowerCase()
+                    const filtered = airports.filter(airport =>
+                        airport.id.toLowerCase().includes(term) ||
+                        airport.name.toLowerCase().includes(term) ||
+                        airport.city.toLowerCase().includes(term) ||
+                        airport.country.toLowerCase().includes(term)
+                    ).slice(0, 8)
+                    setFilteredAirports(filtered)
+                    setIsOpen(filtered.length > 0)
+                } finally {
+                    setIsLoading(false)
+                }
+            }, 300) // 300ms debounce
         } else {
             setFilteredAirports([])
             setIsOpen(false)
+            setIsLoading(false)
+        }
+
+        // Cleanup on unmount
+        return () => {
+            if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current)
+            }
         }
     }, [searchTerm, airports])
 
@@ -40,6 +74,7 @@ export default function AirportAutocomplete({
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
+
 
     const handleSelect = (airport) => {
         setSearchTerm(airport.id)
@@ -97,7 +132,10 @@ export default function AirportAutocomplete({
                     placeholder={placeholder}
                     className="w-full pl-12 pr-10 py-4 bg-dark-700/50 border border-dark-600 rounded-2xl text-white placeholder-dark-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all font-medium"
                 />
-                {searchTerm && (
+                {isLoading && (
+                    <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary-400 animate-spin z-10" />
+                )}
+                {!isLoading && searchTerm && (
                     <button
                         type="button"
                         onClick={handleClear}

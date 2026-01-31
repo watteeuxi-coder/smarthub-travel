@@ -109,15 +109,65 @@ export default function ResultsPage() {
     if (error || !results) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center max-w-md animate-slide-up">
-                    <AlertCircle className="w-12 h-12 text-amber-400 mx-auto mb-4" />
-                    <h2 className="text-xl font-display font-semibold text-white mb-2">
-                        {t('results.noResults')}
-                    </h2>
-                    <p className="text-dark-400 mb-6">{error}</p>
-                    <Link to="/" className="btn-primary">
-                        {t('results.searchAgain')}
-                    </Link>
+                <div className="text-center max-w-2xl animate-slide-up px-4">
+                    <div className="mb-6">
+                        <Plane className="w-16 h-16 text-primary-400 mx-auto mb-4 animate-pulse-subtle" />
+                        <h2 className="text-2xl font-display font-semibold text-white mb-3">
+                            {t('results.noResults') || 'Aucun résultat pour cette recherche'}
+                        </h2>
+                        <p className="text-dark-300 mb-2">
+                            {t('results.noResultsDesc') || 'Nous explorons constamment de nouvelles routes pour vous offrir les meilleures économies.'}
+                        </p>
+                        {error && (
+                            <p className="text-sm text-dark-400 italic mt-2">
+                                {error}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-8">
+                        <h3 className="text-lg font-semibold text-white mb-4">
+                            {t('results.tryPopular') || 'Essayez ces destinations populaires :'}
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {[
+                                { from: 'CDG', to: 'BKK', label: 'Paris → Bangkok', savings: '45%' },
+                                { from: 'JFK', to: 'BKK', label: 'New York → Bangkok', savings: '40%' },
+                                { from: 'LHR', to: 'SYD', label: 'Londres → Sydney', savings: '38%' },
+                                { from: 'CDG', to: 'SYD', label: 'Paris → Sydney', savings: '42%' },
+                            ].map((route) => {
+                                const searchDate = new Date().toISOString().split('T')[0].split('-').reverse().join('/')
+                                return (
+                                    <Link
+                                        key={`${route.from}-${route.to}`}
+                                        to={`/results?from=${route.from}&to=${route.to}&date=${searchDate}`}
+                                        className="p-4 bg-dark-800/50 border border-dark-700 rounded-xl hover:border-primary-500/50 hover:bg-dark-700/50 transition-all group"
+                                    >
+                                        <div className="flex items-center justify-between mb-2">
+                                            <span className="text-white font-medium group-hover:text-primary-400 transition-colors">
+                                                {route.label}
+                                            </span>
+                                            <ArrowRight className="w-4 h-4 text-primary-400 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <TrendingDown className="w-4 h-4 text-accent-400" />
+                                            <span className="text-accent-400 font-semibold">{route.savings}</span>
+                                            <span className="text-dark-400">{t('results.savings') || 'd\'économies'}</span>
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="flex gap-3 justify-center">
+                        <Link to="/" className="btn-primary">
+                            {t('results.searchAgain') || 'Nouvelle recherche'}
+                        </Link>
+                        <Link to="/hubs" className="btn-secondary">
+                            {t('results.viewHubs') || 'Voir les hubs'}
+                        </Link>
+                    </div>
                 </div>
             </div>
         )

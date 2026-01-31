@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { useSearchHistory } from '../hooks/useSearchHistory'
 import AirportAutocomplete from '../components/AirportAutocomplete'
 import SEOHead from '../components/SEOHead'
-import flightData from '../data/data.json'
+import { getAirports } from '../services/api'
 
 export default function HomePage() {
     const [from, setFrom] = useState('')
@@ -48,13 +48,14 @@ export default function HomePage() {
 
     const fetchAirports = async () => {
         try {
-            const response = await fetch('/api/airports')
-            const data = await response.json()
-            if (data.success) {
-                setAirports(data.data)
+            const response = await getAirports()
+            if (response.success) {
+                setAirports(response.data)
             }
         } catch (err) {
             console.error('Failed to fetch airports:', err)
+            // Fallback to empty array - autocomplete will use API search
+            setAirports([])
         } finally {
             setLoadingAirports(false)
         }

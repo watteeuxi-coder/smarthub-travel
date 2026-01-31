@@ -23,6 +23,38 @@ router.get('/airports', (req, res) => {
 });
 
 /**
+ * GET /api/locations
+ * Search for airports/locations for autocomplete
+ * Query params: query (search term)
+ */
+router.get('/locations', async (req, res) => {
+    const { query } = req.query;
+
+    if (!query || query.trim().length < 2) {
+        return res.status(400).json({
+            success: false,
+            error: 'Query parameter is required and must be at least 2 characters'
+        });
+    }
+
+    try {
+        const locations = await kiwiService.searchLocations(query.trim());
+        res.json({
+            success: true,
+            data: locations,
+            count: locations.length
+        });
+    } catch (error) {
+        console.error('Locations search error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to search locations'
+        });
+    }
+});
+
+
+/**
  * GET /api/hubs
  * Get all hub airports
  */
@@ -116,48 +148,17 @@ router.get('/search', async (req, res) => {
     }
 
     try {
-        // If a date is provided, attempt to use the real Flight API
-        if (date) {
-            const realData = await kiwiService.getRealFlightRecommendations(
-                from.toUpperCase(),
-                to.toUpperCase(),
-                date
-            );
-            return res.json(realData);
-        }
+        // Always use Kiwi service (handles simulation mode automatically)
+        // If no date provided, use today's date
+        const searchDate = date || new Date().toISOString().split('T')[0].split('-').reverse().join('/');
 
-        // Fallback to mock data logic
-        const fromAirport = data.airports.find(a =>
-            a.id.toUpperCase() === from.toUpperCase()
-        );
-        const toAirport = data.airports.find(a =>
-            a.id.toUpperCase() === to.toUpperCase()
+        const realData = await kiwiService.getRealFlightRecommendations(
+            from.toUpperCase(),
+            to.toUpperCase(),
+            searchDate
         );
 
-        if (!fromAirport || !toAirport) {
-            return res.status(404).json({
-                success: false,
-                error: 'Airport not found in mock data'
-            });
-        }
-
-        const recommendations = recommendationService.getRecommendations(
-            fromAirport.id,
-            toAirport.id
-        );
-
-        const comparison = priceComparisonService.compareRoutes(
-            fromAirport.id,
-            toAirport.id
-        );
-
-        res.json({
-            success: true,
-            data: {
-                ...recommendations,
-                comparison
-            }
-        });
+        return res.json(realData);
     } catch (err) {
         console.error('Search error:', err);
         res.status(500).json({
