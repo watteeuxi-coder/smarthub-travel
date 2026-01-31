@@ -297,10 +297,15 @@ export default function HomePage() {
 
                                             <button
                                                 type="submit"
-                                                className="btn-accent flex items-center justify-center gap-2 px-12 py-3 shadow-glow-accent hover:shadow-accent-500/40 rounded-2xl"
+                                                className="group relative btn-accent flex items-center justify-center gap-3 px-8 sm:px-12 py-4 shadow-glow-accent hover:shadow-accent-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                                             >
-                                                <Search className="w-5 h-5" />
-                                                <span className="whitespace-nowrap font-bold">{t('hero.searchButton')}</span>
+                                                <div className="absolute inset-0 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600 animate-gradient"></div>
+                                                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity bg-white"></div>
+                                                <Search className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform" />
+                                                <span className="relative z-10 whitespace-nowrap font-bold text-lg">
+                                                    {t('hero.searchButton') || 'Trouver des économies'}
+                                                </span>
+                                                <span className="relative z-10 ml-2 text-2xl group-hover:translate-x-1 transition-transform">→</span>
                                             </button>
                                         </div>
                                     </div>

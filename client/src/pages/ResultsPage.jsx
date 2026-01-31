@@ -112,10 +112,9 @@ export default function ResultsPage() {
         )
     }
 
-    // Show friendly error screen if no results, error, or no hub routes available
-    const hasNoValidResults = error || !results || (!results.directRoute && (!results.hubRoutes || results.hubRoutes.length === 0));
-
-    if (hasNoValidResults) {
+    // Only show error screen if there's an explicit error
+    // The simulation always returns valid results, so we trust the API response
+    if (error) {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center max-w-2xl animate-slide-up px-4">
@@ -127,11 +126,9 @@ export default function ResultsPage() {
                         <p className="text-dark-300 mb-2">
                             {t('results.noResultsDesc') || 'Nous explorons constamment de nouvelles routes pour vous offrir les meilleures économies.'}
                         </p>
-                        {error && (
-                            <p className="text-sm text-dark-400 italic mt-2">
-                                {error}
-                            </p>
-                        )}
+                        <p className="text-sm text-dark-400 italic mt-2">
+                            {error}
+                        </p>
                     </div>
 
                     <div className="mb-8">
@@ -177,6 +174,18 @@ export default function ResultsPage() {
                             {t('results.viewHubs') || 'Voir les hubs'}
                         </Link>
                     </div>
+                </div>
+            </div>
+        )
+    }
+
+    // Show loading placeholder while results is still null (initial state)
+    if (!results) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <Plane className="w-12 h-12 text-primary-400 animate-bounce mx-auto mb-4" />
+                    <p className="text-dark-300">{t('common.loading')}</p>
                 </div>
             </div>
         )
