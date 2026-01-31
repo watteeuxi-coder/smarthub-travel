@@ -36,14 +36,20 @@ export default function ResultsPage() {
             url.searchParams.append('to', to)
             if (date) url.searchParams.append('date', date)
 
+            console.log('🔍 Fetching results for:', { from, to, date });
             const response = await fetch(url)
             const data = await response.json()
+            console.log('📦 API Response:', data);
+
             if (data.success) {
+                console.log('✅ Success! Results:', data.data);
                 setResults(data.data)
             } else {
+                console.log('❌ API returned success:false', data.error);
                 setError(data.error || 'No routes found')
             }
         } catch (err) {
+            console.error('🚨 Fetch error:', err);
             setError('Failed to fetch routes. Please try again.')
         } finally {
             setLoading(false)
@@ -106,7 +112,10 @@ export default function ResultsPage() {
         )
     }
 
-    if (error || !results) {
+    // Show friendly error screen if no results, error, or no hub routes available
+    const hasNoValidResults = error || !results || (!results.directRoute && (!results.hubRoutes || results.hubRoutes.length === 0));
+
+    if (hasNoValidResults) {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center max-w-2xl animate-slide-up px-4">
